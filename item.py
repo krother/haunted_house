@@ -37,7 +37,6 @@ class Item:
 
 
 
-
 key = Item('key', activate_key)
 orb = Item('silver orb', activate_orb)
 

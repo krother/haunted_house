@@ -1,5 +1,7 @@
 # Haunted House
 
+from item import inventory
+
 class Room:
 
     def __init__(self, name, base_desc='', **kwargs):
@@ -61,6 +63,7 @@ def create_rooms():
         ('garden', 'graveyard'),
         ('entrance', 'hallway'),
         ('hallway', 'staircase'),
+        ('staircase', 'tower'),
     ]
     for r1, r2 in connections:
         rooms[r1].add_connection(rooms[r2])
@@ -85,6 +88,10 @@ if __name__ == '__main__':
            # ^^^^^ jumps here ----^  (location becomes self)
        elif cmd == 'boo':
            location.chase_skeletons_away()
+       elif cmd.startswith('use'):
+           itemname = cmd.split()[1]
+           item = inventory[itemname]
+           item.use(location)
        else:
            new_loc = rooms[location.get_connected_room(int(cmd)-1)]
            location = new_loc
