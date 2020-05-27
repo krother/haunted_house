@@ -3,26 +3,30 @@ TODO: Items have a specific effect when they are activated in a specific room.
 """
 import sys
 
+
 # item 1: key
 # effect: if the item is activated in the entrance, it opens the door
 def activate_key(room):
     """room is a Room object"""
-    if room.name == 'entrance':
-        print('the door has been opened')
-        room.status['door'] = 'open'
+    if room.name == "entrance":
+        print("the door has been opened")
+        room.status["door"] = "open"
+
 
 # item 2: silver orb
 # effect: if the item is activated in the tower, it wins the game
 def activate_orb(room):
-    if room.name == 'tower':
-        print('you win the game')
+    """Game-winning object"""
+    if room.name == "tower":
+        print("you win the game")
         sys.exit(0)
+
 
 # we have several options to implement that behaviour
 
 
-# option 3: one generic item class + callback functions
 class Item:
+    """option 3: one generic item class + callback functions"""
 
     def __init__(self, name, callback):
         self.name = name
@@ -36,11 +40,10 @@ class Item:
         self.callback(room)
 
 
+key = Item("key", activate_key)
+orb = Item("silver orb", activate_orb)
 
-key = Item('key', activate_key)
-orb = Item('silver orb', activate_orb)
-
-inventory = {'key': key, 'orb': orb}
+inventory = {"key": key, "orb": orb}
 
 """
 # option 1: subclasses
