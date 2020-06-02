@@ -70,6 +70,22 @@ def create_rooms():
     return rooms
 
 
+def handle_command(cmd, rooms, location, inventory):
+    if cmd == "light":
+        location.turn_on_light()
+        # ^^^^^ jumps here ----^  (location becomes self)
+    elif cmd == "boo":
+        location.chase_skeletons_away()
+    elif cmd.startswith("use"):
+        itemname = cmd.split()[1]
+        item = inventory[itemname]
+        item.use(location)
+    else:
+        new_loc = rooms[location.get_connected_room(int(cmd) - 1)]
+        location = new_loc
+    return location
+
+
 # main program
 if __name__ == "__main__":
     rooms = create_rooms()
@@ -83,15 +99,4 @@ if __name__ == "__main__":
         location.print_connections()
 
         cmd = input("\nenter command: ")
-        if cmd == "light":
-            location.turn_on_light()
-            # ^^^^^ jumps here ----^  (location becomes self)
-        elif cmd == "boo":
-            location.chase_skeletons_away()
-        elif cmd.startswith("use"):
-            itemname = cmd.split()[1]
-            item = inventory[itemname]
-            item.use(location)
-        else:
-            new_loc = rooms[location.get_connected_room(int(cmd) - 1)]
-            location = new_loc
+        location = handle_command(cmd, rooms, location, inventory)
