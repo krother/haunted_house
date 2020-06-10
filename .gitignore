@@ -64,7 +64,6 @@ instance/
 
 # Sphinx documentation
 docs/_build/
-/doctrees/
 
 # PyBuilder
 target/
@@ -102,11 +101,5 @@ ENV/
 # mypy
 .mypy_cache/
 
-# twitter API keys and mongoDB connection
-tweego/config.py
-
-# generated config.ini file from ConfigParser when packaging project
-tweego/config.ini
-
-# credentials for AWS server
-*.pem
+# IDE settings
+.vscode/
