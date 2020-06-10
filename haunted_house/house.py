@@ -1,6 +1,6 @@
 # Haunted House
 
-from item import inventory
+from haunted_house.item import inventory
 
 
 class Room:

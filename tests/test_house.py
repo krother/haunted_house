@@ -1,5 +1,5 @@
 
-from house import create_rooms, handle_command, inventory
+from haunted_house.house import create_rooms, handle_command, inventory
 import pytest
 
 # TODO
